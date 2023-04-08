@@ -5,32 +5,45 @@ import {
   Container,
   Flex,
   Icon,
+  Link,
   SimpleGrid,
+  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const testimonials = [
   {
     name: "ETH Global NYC",
-    role: "Chief Marketing Officer",
-    content:
-      "It really saves me time and effort. It is exactly what our business has been lacking. EEZY is the most valuable business resource we have EVER purchased. After using EEZY my business skyrocketed!",
+    role: "June 2022",
+    sponsor: "OpenSea XMTP",
+    content: "I built OTC Swap at this time with solo.",
     avatar: "images/ethnyc.jpeg",
+    link: "https://nyc.ethglobal.co/",
+    showcase: "https://ethglobal.com/showcase/otc-swap-n3vhk",
+    index: 1,
   },
   {
     name: "ETH Global Bogotá",
-    role: "Entrepreneur",
+    role: "October 2022",
+    sponsor: "Moonbeam Hyperlane",
     content:
       "I didn't even need training. We've used EEZY for the last five years. I have gotten at least 50 times the value from EEZY. I made back the purchase price in just 48 hours!",
     avatar: "images/ethbogota.jpeg",
+    link: "https://bogota.ethglobal.com/",
+    showcase: "https://ethglobal.com/showcase/zipchain-wozag",
+    index: 2,
   },
   {
     name: "ETH Denver 2023",
-    role: "Movie star",
+    role: "March 2023",
+    sponsor: "Aragon DAO",
     content:
       "Thank you for making it painless, pleasant and most of all, hassle free! I'm good to go. No matter where you go, EEZY is the coolest, most happening thing around! I love EEZY!",
-    avatar:
-      "images/ethdenver.jpeg",
+    avatar: "images/ethdenver.jpeg",
+    link: "https://www.ethdenver.com/",
+    showcase: "https://app.buidlbox.io/projects/dayori",
+    index: 3,
   },
 ];
 
@@ -44,13 +57,16 @@ const backgrounds = [
 interface TestimonialCardProps {
   name: string;
   role: string;
+  sponsor: string;
   content: string;
   avatar: string;
+  link: string;
+  showcase: string;
   index: number;
 }
 
 function TestimonialCard(props: TestimonialCardProps) {
-  const { name, role, content, avatar, index } = props;
+  const { name, role, sponsor, content, avatar, link, showcase, index } = props;
   return (
     <Flex
       boxShadow={"lg"}
@@ -93,6 +109,30 @@ function TestimonialCard(props: TestimonialCardProps) {
         textAlign={"left"}
         justifyContent={"space-between"}
       >
+        <chakra.p fontFamily={"Work Sans"} fontWeight={"bold"} fontSize={24}>
+          <Link href={link} isExternal>
+            {name}
+          </Link>
+          <chakra.span
+            fontFamily={"Inter"}
+            fontWeight={"medium"}
+            color={"gray.500"}
+            fontSize={16}
+          >
+            {" "}
+            - {role}
+          </chakra.span>
+        </chakra.p>
+
+        <Text
+          fontFamily={"Work Sans"}
+          fontSize={{ base: "16px", lg: "18px" }}
+          color={useColorModeValue("yellow.500", "yellow.300")}
+          fontWeight={"500"}
+          mb={"4"}
+        >
+          Prizes from : {sponsor}
+        </Text>
         <chakra.p
           fontFamily={"Inter"}
           fontWeight={"medium"}
@@ -101,22 +141,14 @@ function TestimonialCard(props: TestimonialCardProps) {
         >
           {content}
         </chakra.p>
-        <chakra.p fontFamily={"Work Sans"} fontWeight={"bold"} fontSize={14}>
-          {name}
-          <chakra.span
-            fontFamily={"Inter"}
-            fontWeight={"medium"}
-            color={"gray.500"}
-          >
-            {" "}
-            - {role}
-          </chakra.span>
-        </chakra.p>
+        <Link href={showcase} isExternal>
+          {showcase}
+        </Link>
       </Flex>
       <Avatar
         src={avatar}
-        height={"80px"}
-        width={"80px"}
+        height={"100px"}
+        width={"100px"}
         alignSelf={"center"}
         m={{ base: "0 0 35px 0", md: "0 0 0 50px" }}
       />
@@ -160,18 +192,19 @@ export default function Prizes() {
           fontWeight={"medium"}
           color={useColorModeValue("gray.500", "gray.400")}
         >
-          See why over{" "}
-          <chakra.strong color={useColorModeValue("gray.700", "gray.50")}>
+          I&apos;ve participated in some global hackathons related in
+          Blockchain and got some prizes!
+          {/* <chakra.strong color={useColorModeValue("gray.700", "gray.50")}>
             150,000+
           </chakra.strong>{" "}
-          influencers use EEZY to manage their social media content!
+          influencers use EEZY to manage their social media content! */}
         </chakra.h2>
       </Box>
       <SimpleGrid
         columns={{ base: 1, xl: 1 }}
         spacing={"20"}
-        mt={16}
-        mb={16}
+        mt={8}
+        mb={8}
         mx={"auto"}
       >
         {testimonials.map((cardInfo, index) => (

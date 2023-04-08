@@ -69,7 +69,7 @@ export default function Home() {
             <Cards
               title="ZipChain"
               description="Notification tool for DAO"
-              image="images/dayori.png"
+              image="images/zipchain.png"
             />
             <Cards
               title="NFT Hashi"
